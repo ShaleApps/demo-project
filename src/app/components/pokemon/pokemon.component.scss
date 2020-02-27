@@ -1,0 +1,34 @@
+@import '../../styles/imports';
+
+.pokemon {
+  margin: auto;
+  max-width: 960px;
+  padding: $base;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $base;
+  background-color: $black;
+}
+
+.info {
+  box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.1);
+  max-height: 300px;
+  overflow: auto;
+  position: relative;
+  padding: $small;
+
+  &.span-3 {
+    grid-column: span 3;
+  }
+}
+
+header {
+  grid-column: span 3;
+  display: flex;
+  font-size: $large;
+  align-items: center;
+}
+
+.hidden {
+  color: $gray;
+}

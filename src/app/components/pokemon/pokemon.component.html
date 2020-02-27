@@ -1,0 +1,46 @@
+<div class="pokemon" *ngIf="pokemon; else loading">
+  <a [routerLink]="['../']"><mat-icon>arrow_back</mat-icon></a>
+  <header>
+    <img [src]="pokemon.sprites.back_default" />
+    <img [src]="pokemon.sprites.back_female" />
+    <img [src]="pokemon.sprites.back_shiny" />
+    <img [src]="pokemon.sprites.back_shiny_female" />
+    <img [src]="pokemon.sprites.front_default" />
+    <img [src]="pokemon.sprites.front_female" />
+    <img [src]="pokemon.sprites.front_shiny" />
+    <img [src]="pokemon.sprites.front_shiny_female" />
+    {{ pokemon.name | titlecase }}
+  </header>
+  <section class="info">
+    <h2>Moves</h2>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let move of pokemon.moves">{{ move.move.name }}</mat-list-item>
+    </mat-list>
+  </section>
+  <section class="info">
+    <h2>Abilities</h2>
+    <mat-list role="list">
+      <mat-list-item [class.hidden]="ability.is_hidden" role="listitem" *ngFor="let ability of pokemon.abilities">{{
+        ability.ability.name
+      }}</mat-list-item>
+    </mat-list>
+  </section>
+  <section class="info">
+    <h2>Stats</h2>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let stat of pokemon.stats"
+        >{{ stat.stat.name }} ({{ stat.effort }})</mat-list-item
+      >
+    </mat-list>
+  </section>
+
+  <section class="info span-3">
+    <h2>Forms</h2>
+  </section>
+</div>
+
+<ng-template #loading>
+  <div class="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
