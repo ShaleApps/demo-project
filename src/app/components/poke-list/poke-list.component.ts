@@ -29,6 +29,7 @@ export interface PokemonListResponse {
 })
 export class PokeListComponent implements OnInit {
   public pokemon$$ = new BehaviorSubject<PokeListSummaryWithId[]>([]);
+  private listCopy;
   constructor(private http: HttpClient) {}
 
   public ngOnInit(): void {
@@ -37,6 +38,19 @@ export class PokeListComponent implements OnInit {
 
   private async getPokemonList() {
     const pokeList = await this.http.get<PokemonListResponse>(pokeListUrl).toPromise();
+    this.listCopy = pokeList;
+    this.pokemon$$.next(pokeList.results.map(includeId));
+  }
+
+  async onPrev() {
+    const pokeList = await this.http.get<PokemonListResponse>(this.listCopy.previous).toPromise();
+    this.listCopy = pokeList;
+    this.pokemon$$.next(pokeList.results.map(includeId));
+  }
+
+  async onNext() {
+    const pokeList = await this.http.get<PokemonListResponse>(this.listCopy.next).toPromise();
+    this.listCopy = pokeList;
     this.pokemon$$.next(pokeList.results.map(includeId));
   }
 }

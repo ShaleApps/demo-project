@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from '~environments/environment';
 import { Pokemon } from '~models/pokemon';
 import * as fromRouterConstants from '../../app-routing.constants';
+import { Observable } from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,13 +13,19 @@ import * as fromRouterConstants from '../../app-routing.constants';
   templateUrl: './pokemon.component.html',
 })
 export class PokemonComponent implements OnInit {
-  public pokemon: Pokemon;
+  public pokemon$: Observable<Pokemon>;
   constructor(private http: HttpClient, private router: ActivatedRoute) {}
+  public pokeSprite;
 
   public ngOnInit(): void {
     const pokemonId = this.router.snapshot.paramMap.get(fromRouterConstants.POKEMON_ID);
-    this.http.get<Pokemon>(`${environment.apiBaseUrl}/pokemon/${pokemonId}`).subscribe((pokemon) => {
-      this.pokemon = pokemon;
+    this.pokemon$ = this.http.get<Pokemon>(`${environment.apiBaseUrl}/pokemon/${pokemonId}`);
+
+    this.pokemon$.subscribe((data) => {
+      this.pokeSprite = data.sprites;
     });
+    this.rotateSprite();
   }
+
+  public rotateSprite(): void {}
 }

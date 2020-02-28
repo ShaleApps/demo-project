@@ -1,4 +1,4 @@
-<div class="pokemon" *ngIf="pokemon; else loading">
+<div class="pokemon" *ngIf="pokemon$ | async as pokemon; else loading">
   <a [routerLink]="['../']"><mat-icon>arrow_back</mat-icon></a>
   <header>
     <img [src]="pokemon.sprites.back_default" />

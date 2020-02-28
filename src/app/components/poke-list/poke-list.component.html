@@ -2,6 +2,10 @@
   <mat-card *ngFor="let pokemon of pokemon$$ | async"
     ><a [routerLink]="[pokemon.id]">{{ pokemon.name }}</a></mat-card
   >
+  <mat-card
+    ><button type="button" (click)="onPrev()">Prev</button
+    ><button type="button" (click)="onNext()">Next</button></mat-card
+  >
 </ng-container>
 <ng-template #loading>
   <div class="loading">
