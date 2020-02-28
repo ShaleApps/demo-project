@@ -1,8 +1,8 @@
 # Bugs/Improvements
 
 - Why does the pokemon detail page never stop loading?
-- Can we fix it so hitting the back button doesn't make the pokemon list reload every time? Kind of ruins the SPA aspect?
-- The [PokeAPI](https://pokeapi.co/) only shows 20 resuls at a time, can we add a feature that allows people to view the next page?
+- Can we fix it so hitting the back button doesn't make the pokemon list reload every time? Kind of ruins the SPA aspect.
+- The [PokeAPI](https://pokeapi.co/) only shows 20 results at a time, can we add a feature that allows people to view the next page?
 - Rather than showing all of the poke-sprites at once on the detail page, can we make that rotate every 5ish seconds?
 - For the headers (abilities, moves, etc) on the pokemon details page, can we make them sticky when scrolling?
 
